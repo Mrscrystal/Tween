@@ -7,9 +7,11 @@
  * you can visit 'https://www.zhangxinxu.com/study/201612/how-to-use-tween-js.html' to get effect
 */
 var Tween = {
+    //匀速
     Linear: function(t, b, c, d) { 
         return c * t / d + b; 
     },
+    //二次方曲线，匀变速直线运动曲线，如匀加速运动、摩擦力匀减速运动。
     Quad: {
         easeIn: function(t, b, c, d) {
             return c * (t /= d) * t + b;
@@ -22,6 +24,7 @@ var Tween = {
             return -c / 2 * ((--t) * (t-2) - 1) + b;
         }
     },
+    //三次方曲线，变加速直线运动
     Cubic: {
         easeIn: function(t, b, c, d) {
             return c * (t /= d) * t * t + b;
@@ -34,6 +37,7 @@ var Tween = {
             return c / 2*((t -= 2) * t * t + 2) + b;
         }
     },
+    //四次方曲线
     Quart: {
         easeIn: function(t, b, c, d) {
             return c * (t /= d) * t * t*t + b;
@@ -46,6 +50,7 @@ var Tween = {
             return -c / 2 * ((t -= 2) * t * t*t - 2) + b;
         }
     },
+    //五次方曲线
     Quint: {
         easeIn: function(t, b, c, d) {
             return c * (t /= d) * t * t * t * t + b;
@@ -58,6 +63,7 @@ var Tween = {
             return c / 2*((t -= 2) * t * t * t * t + 2) + b;
         }
     },
+    //通过用sin曲线设置物体的透明度，可以实现呼吸灯效果
     Sine: {
         easeIn: function(t, b, c, d) {
             return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
@@ -69,6 +75,7 @@ var Tween = {
             return -c / 2 * (Math.cos(Math.PI * t/d) - 1) + b;
         }
     },
+    //是一个开始非常慢，中后期非常快的曲线
     Expo: {
         easeIn: function(t, b, c, d) {
             return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
@@ -83,6 +90,7 @@ var Tween = {
             return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
         }
     },
+    //顾名思义就是弧（1/4圆，如果选择了InOut就是两个外切的1/4圆）
     Circ: {
         easeIn: function(t, b, c, d) {
             return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
@@ -95,6 +103,7 @@ var Tween = {
             return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
         }
     },
+    //这是个模拟弹簧运动的曲线，实现了和ios的spring动画相似的效果
     Elastic: {
         easeIn: function(t, b, c, d, a, p) {
             var s;
@@ -152,6 +161,7 @@ var Tween = {
             return c / 2*((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
         }
     },
+    //这是个模拟小球落地的反弹曲线    
     Bounce: {
         easeIn: function(t, b, c, d) {
             return c - Tween.Bounce.easeOut(d-t, 0, c, d) + b;
